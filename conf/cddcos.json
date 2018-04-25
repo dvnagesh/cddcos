@@ -3,7 +3,7 @@
   "container": {
     "type": "DOCKER",
     "docker": {
-      "image": "mesosphere/cd-demo-app:latest"
+      "image": "registry.internationalcryptox.io/dcos/nags-cd:latest"
     },
     "portMappings": [
       {
@@ -56,7 +56,7 @@
     }
   ],
   "upgradeStrategy": {
-    "maximumOverCapacity": 2,
-    "minimumHealthCapacity": 2
+    "maximumOverCapacity": 1,
+    "minimumHealthCapacity": 1
   }
 }
