@@ -1,0 +1,62 @@
+{
+  "id": "/cd-jenkins-app",
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "mesosphere/cd-demo-app:latest"
+    },
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "hostPort": 0,
+        "protocol": "tcp",
+        "name": "cd-jenkins-app-http"
+      },
+      {
+        "containerPort": 443,
+        "hostPort": 0,
+        "protocol": "tcp",
+        "name": "cd-jenkins-app-https"
+      }
+    ]
+  },
+  "fetch": [
+    {
+      "uri": "file:///etc/docker.tar.gz",
+      "extract": true,
+      "executable": false,
+      "cache": false
+    }
+  ],
+ "healthChecks": [
+    {
+      "gracePeriodSeconds": 300,
+      "intervalSeconds": 60,
+      "maxConsecutiveFailures": 3,
+      "portIndex": 0,
+      "timeoutSeconds": 20,
+      "delaySeconds": 15,
+      "protocol": "MESOS_HTTP",
+      "path": "/",
+      "ipProtocol": "IPv4"
+    }
+  ],
+  "cpus": 0.1,
+  "instances": 2,
+  "labels": {
+    "HAPROXY_0_VHOST": "cdapp.internationalcryptox.io",
+    "HAPROXY_GROUP": "external",
+    "HAPROXY_0_REDIRECT_TO_HTTPS": "true"
+  },
+  "mem": 128,
+  "networks": [
+    {
+      "mode": "container/bridge",
+      "labels": {}
+    }
+  ],
+  "upgradeStrategy": {
+    "maximumOverCapacity": 1,
+    "minimumHealthCapacity": 1
+  }
+}
