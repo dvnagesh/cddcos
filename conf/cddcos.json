@@ -56,7 +56,7 @@
     }
   ],
   "upgradeStrategy": {
-    "maximumOverCapacity": 1,
-    "minimumHealthCapacity": 1
+    "maximumOverCapacity": 2,
+    "minimumHealthCapacity": 2
   }
 }
