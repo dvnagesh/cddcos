@@ -1,0 +1,44 @@
+{
+  "id": "/jenkins-deployed-app",
+  "cmd": "jekyll serve",
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "mesosphere/cd-demo-app:latest"
+    },
+    "portMappings": [
+      {
+        "containerPort": 4000,
+        "hostPort": 0,
+        "protocol": "tcp",
+        "name": "jenkins-deployed-app"
+      }
+    ]
+  },
+  "fetch": [
+    {
+      "uri": "file:///etc/docker.tar.gz",
+      "extract": true,
+      "executable": false,
+      "cache": false
+    }
+  ],
+  "cpus": 0.1,
+  "instances": 1,
+  "labels": {
+    "HAPROXY_0_VHOST": "cicd.internationalcryptox.io",
+    "HAPROXY_GROUP": "external",
+    "HAPROXY_0_REDIRECT_TO_HTTPS": "true"
+  },
+  "mem": 128,
+  "networks": [
+    {
+      "mode": "container/bridge",
+      "labels": {}
+    }
+  ],
+  "upgradeStrategy": {
+    "maximumOverCapacity": 1,
+    "minimumHealthCapacity": 1
+  }
+}
