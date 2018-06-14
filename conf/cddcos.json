@@ -41,14 +41,14 @@
       "ipProtocol": "IPv4"
     }
   ],
-  "cpus": 0.1,
-  "instances": 2,
+  "cpus": 0.4,
+  "instances": 4,
   "labels": {
     "HAPROXY_0_VHOST": "cdapp.internationalcryptox.io",
     "HAPROXY_GROUP": "external",
     "HAPROXY_0_REDIRECT_TO_HTTPS": "true"
   },
-  "mem": 128,
+  "mem": 256,
   "networks": [
     {
       "mode": "container/bridge",
